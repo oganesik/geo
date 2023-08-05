@@ -37,6 +37,15 @@ class _MyWidgetState extends State<MyWidget> {
   int? xGlobal;
   int? yGlobal;
   int? zGlobal;
+
+  @override
+  void dispose() {
+    _latitude.dispose();
+    _longitude.dispose();
+    _zoom.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
