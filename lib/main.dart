@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,14 +53,23 @@ class _MyWidgetState extends State<MyWidget> {
       body: Column(
         children: [
           TextFormField(
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+            ],
             controller: _latitude,
             decoration: InputDecoration(hintText: "Введите широту"),
           ),
           TextFormField(
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]')),
+            ],
             controller: _longitude,
             decoration: InputDecoration(hintText: "Введите долготу"),
           ),
           TextFormField(
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            ],
             controller: _zoom,
             decoration: InputDecoration(hintText: "Введите зум"),
           ),
