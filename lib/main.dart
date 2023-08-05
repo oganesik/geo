@@ -66,14 +66,14 @@ class _MyWidgetState extends State<MyWidget> {
           TextButton(
               onPressed: () {
                 const double e = 0.0818191908426;
-                const pi = 3.14;
+
                 double b = (pi * double.parse(_latitude.text)) / 180;
                 double fi = ((1 - e * sin(b)) / (1 + e * sin(b)));
                 double fita = tan(pi / 4 + b / 2) * pow(fi, e / 2);
                 double p = (pow(2, double.parse(_zoom.text) + 8) / 2);
 
                 double x = p * (1 + ((double.parse(_longitude.text)) / 180));
-                double y = p * (1 - log(fita) / pi);
+                double y = p * (1 - (log(fita) / pi));
 
                 setState(() {
                   xGlobal = (x / 256).floor();
@@ -87,6 +87,8 @@ class _MyWidgetState extends State<MyWidget> {
           Container(
             child: Image.network(
               "https://core-carparks-renderer-lots.maps.yandex.net/maps-rdr-carparks/tiles?l=carparks&x=$xGlobal&y=$yGlobal&z=$zGlobal&scale=1&lang=ru_RU",
+              errorBuilder: (context, error, stackTrace) =>
+                  Text("Данные введены неверно"),
             ),
           )
         ],
